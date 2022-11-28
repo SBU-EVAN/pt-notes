@@ -1,0 +1,418 @@
+\chapter{Eulerian Perterbation Theory}
+To begin, I need a few definitions. First, the \textit{hubble length/time}, defined as $1/H_0$. It gives the age/size of the universe if inflation is perfectly linear/constant. Given a perfectly isotropic universe, this means the matter density decreases linearly with time. Because of gravitational instability, the small matter density fluctuations grow over time and a linear theory becomes insufficient at smaller redshifts. Additionally the  non-linear perturbation theory fails at scales where non-perturbative effects dominate (would like examples). 
+
+\begin{qn}
+	What is linear perturbation theory vs non-linear perturbation theory?
+\end{qn}
+
+\textit{Donghui Jeong} refers to the conditions where non-linear perturbation theory are valid as the \textit{quasi-nonlinear regime} and it satisfies the following properties:
+
+\begin{enumerate}
+	\item It's scale is smaller than the hubble scale. This allows the matter field to follow Newtonian Fluid EOM.
+	\item It's scale is larger than baryonic pressure. Both dark matter and baryonic matter are part of a pressureless matter.
+	\item Vorticity from non-linear effects is negligable.
+\end{enumerate}
+In the subsequent sections, define
+\begin{equation}
+	\delta(\tau,x) = \frac{\rho(\tau,x)}{\overline{\rho}(\tau)}-1
+\end{equation}
+
+\section{Equations of Motion, The Fluid Approximation}
+\subsection{The Boltzmann Equation}
+We can write the number of particles located in a region of phase space as
+\begin{equation}
+	N = f dx^3 \frac{dp^3}{(2\pi)^3}
+\end{equation}
+We can look at the change in the number of particles over time in this region by looking at the distribution function $f$.
+\begin{equation}
+	\frac{df}{dt} = \partial_t f + \dot{x}\nabla_xf + \dot{p}\nabla_pf = \partial_t f + \frac{p}{m}\nabla_xf + ma\nabla_pf = C[f]
+\end{equation}
+Now we want to express this in a relativistic and expanding universe. Let $\lambda(t)$ be a monatonically increasing parameter. Then for any path through space the coordinate functions are parameterized by $\lambda$, giving $\dot x = x'\dot\lambda$, where primes denotes a derivative w.r.t $\lambda$ and a dots denote the derivative w.r.t $t$. Plugging this in we get.
+\begin{equation}
+	\frac{df}{dt} = \partial_t f + x'\dot\lambda \nabla_xf + p' \dot\lambda \nabla_pf
+\end{equation}
+
+Then, we need to account for curvature. geodesic equation for the timelike components is
+\begin{equation}
+	\begin{split}
+		t^{''} &= -\Gamma^{0}_{\mu\nu}(x^\mu)'(x^\nu)' \\
+		P^{0'} &= -\Gamma^{0}_{\mu\nu} P^{\mu} P^{\nu}
+	\end{split}
+\end{equation}
+Furthermore, since $P^{0'} = \dot{P}^{0} t' = P^{0}\dot{P}^{0}$ we have
+\begin{equation}
+	P^{0}\dot{P}^{0} = -\Gamma^{0}_{\mu\nu} P^{\mu} P^{\nu}
+\end{equation}
+Now, using $P^{0}\dot{P}^{0} = \frac{1}{2}\frac{d}{dt}E^2=\frac{1}{2}\frac{d}{dt}(p^2+m^2) = p\dot p = -Hp^2$ (last term from christoffel symbol), and that $P^0 = ma$, and that $\dot p = Hp = \nabla\phi$
+\begin{equation}
+	\partial_t f + \frac{p^i}{ma^2}\partial_i f - \nabla\phi \partial_{p_i}f = C[f]
+\end{equation}
+\subsection{The Three Fluid Equations}
+\subsubsection{The First Equation: The Continuity Equation}
+Our first fluid equation will come from the zero-th velocity moment of $df/dt$. We start by defining the density $\rho$,
+\begin{equation}
+	\begin{split}
+		\int f(t,x,p)dp &= \rho(t,x) \\
+		\frac{d}{dt}\rho(t,x) &= \frac{d}{dt}\int f(t,x,p) dp \\
+		                      &= \int \frac{d}{dt} f dp \\
+		                      &= 0 \\		                     
+	\end{split}
+\end{equation}
+on the other hand
+\begin{equation}
+	\begin{split}
+		\frac{d}{dt}\rho(t,x) &= \partial_t \rho + (\nabla_x\rho) \cdot \dot x \\
+		\Rightarrow \partial_t\rho + (\nabla_x\rho) \cdot v  &= 0 \\
+		\Rightarrow \partial_t \rho + (\nabla_x \rho) \cdot v &= 0 \\
+	\end{split}
+\end{equation}
+Also
+\begin{equation}
+	\overline\rho(t) = \int\rho(t,x)dx \Rightarrow \frac{d}{dt}\overline{\rho} = 0
+\end{equation}
+Hence
+\begin{equation}
+	\begin{split}
+		\partial_t (\rho - \overline{\rho}) + \frac{\overline{\rho}}{\overline{\rho}}\nabla_x(\rho) \cdot v &= 0 \\
+		\partial_t (\overline{\rho} \delta) + \overline{\rho}\nabla_x (1+\delta) \cdot v &=0
+	\end{split}
+\end{equation}
+\begin{equation}
+	\partial_t \delta + \nabla_x (1+\delta) \cdot v =0
+\end{equation}
+
+\subsubsection{The Second Equation: The Euler Equation}
+Then next equation comes from the second velocity moment of the Vlasov equation (),
+\begin{equation}
+	\begin{split}
+		\int p^j f d^3p &= \rho p^j \\
+		\partial_t(\int p^j f d^3p) &= \partial_t(\rho p^j) \\
+		\int(\dot p^j f + p^j \partial_t f ) d^3p &= p^j\partial_t \rho + \rho \dot p \\
+		\int p^j \partial_t f d^3p &= p^j \partial_t \rho \\
+		\int \frac{p^j p^i}{ma^2} \partial_{x,i}f - \partial_x^i\phi\partial_{p,i}f d^3p &= p^j \partial_{x,i}\rho v^i
+	\end{split}
+\end{equation}
+Now we need to truncate the Hierarchy of moments. we have the second moment
+\begin{equation}
+	\begin{split}
+		\int p^ip^j f d^3p = \rho p^ip^j + P^{ij}
+	\end{split}
+\end{equation}
+Where we define $P^{ij}$ as the pressure tensor. If we assume isotropic pressure we can close the higherarchy
+\begin{equation}
+	P^{ij} = 0
+\end{equation}
+Now we can plug this into the second moment to get
+\begin{equation}
+	\begin{split}
+		\frac{p^jp^i}{ma^2}\nabla_{x,i}f - p^j\nabla \phi \nabla_{p,i}f d^3p &= p^j\nabla_{x,i}\rho \frac{dp}{dt} \\
+		\frac{1}{ma^2} \left[ p^ip^j \partial_{x,i} \rho - pg^{ij}\partial_{x,i}\rho \right] - \int p^j \nabla_{x.i}\phi\nabla_p^i f d^3p &= v^j \partial_{x,i} \rho p^i + p^j\nabla_{x,i}\rho \frac{dp}{dt} \\
+		\frac{1}{ma^2} p^ip^j \partial_{x,i} \rho - \int p^j \nabla_{x.i}\phi\nabla_p^i f d^3p &= p^j\nabla_{x,i}\rho \frac{dp}{dt} \\
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		\int p^j \partial_t f d^2p dp^j &= \iint \partial_t p^j f d^2p dp^j \\
+										&= \iint \dot p^j f + p^j\partial_t f d^2p dp^j \\
+		                                & u=p^j, dv = \int \partial_t f d^2p dp^j,  du = dp^j, v = \partial_t \rho \\
+		                                &= \dot p^j \rho + p^j\partial_t\rho - \int\partial_t\rho dp^j \\
+		                                &= \dot p^j \rho
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		\iiint p^i \partial_{x,i} p^j f dp^i dp^j dp^k &= \iiint p^i f \partial_{x,i} p^j + p^i p^j \partial_{x,i} f dp^i dp^j dp^k \\
+													   &= \iiint p^i f \partial_{x,i} p^j dp^i dp^j dp^k + \rho p^i p^j + P^{ij} \\
+													   & u = p^i, dv = f \partial_{x,i} p^j dp^i, du = dp^i, v = \partial_{x,i}p^j \int f dp^i \\
+													   &= p^i \partial_{x,i} p^j \rho - p^i \partial_{x,i} p^j \rho + \rho\partial_{x,i}( p^i p^j + P^{ij}) \\
+													   &= \rho p^j \partial_{x,i} p^i  + p^j\partial_{x,i}\rho p^i
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		a^2 \iint \partial^i \phi \partial_{p,i}p^j f d^2p dp^j &= a^2 \iint \partial^i\phi f \partial_{p,i} p^j d^2p dp^j + \iint p^j \partial^i\phi 															\partial_{p,i}f d^2p dp^j \\
+																&= a^2 \int \partial^j\phi f d^3p + \partial^i \phi \iint p^j \partial_{p,i}f d^2p dp^j \\
+																&= a^2 \rho \partial^j\phi
+	\end{split}
+\end{equation}
+Now if we put everything together and divide by $\rho$ we get
+\begin{equation}
+	\dot p + \frac{1}{ma^2}(p\cdot\nabla_x) p + \nabla_x\phi = 0
+\end{equation}
+FInally convert the time to conformal time ($t\rightarrow at$) and divide by $m$ to get
+\begin{equation}
+	\dot v + \mathcal{H} v + (v\cdot\nabla_x) v + \nabla_x\phi = 0
+\end{equation}
+
+\subsubsection{The Third Equation: The Poisson Equation}
+Firstly, we are dealing with gravitationally interacting matter. Thus it is subject to the poisson equation relating the divergence of the gravitational field to the source of the gravitational field via Gauss's law.
+\begin{equation}
+	\nabla^2\phi = 4\pi G (\rho-\overline{\rho}) = 4\pi G a^2 \overline{\rho} \delta
+\end{equation}
+
+\section{Linear Solution}
+To summarize, the three fluid equations we have are
+\begin{equation}\label{fluid_continuity}
+	\partial_t \delta + \nabla_x (1+\delta) \cdot v =0
+\end{equation}
+\begin{equation}\label{fluid_euler}
+	\dot v + \mathcal{H} v + (v\cdot\nabla_x) v + \nabla_x\phi = 0
+\end{equation}
+\begin{equation}\label{fluid_poisson}
+	\nabla^2\phi = 4\pi G (\rho-\overline{\rho}) = 4\pi G a^2 \overline{\rho} \delta
+\end{equation}
+We will make the following assumptions at large scales in this section:
+\begin{enumerate}
+	\item Matter fluctuations are small compared to the homogenous contribution 
+	\item Velocity vanishes on large scales
+\end{enumerate}
+These assumptions allow the non-linear terms of the three fluid equations to vanish, so equations \ref{fluid_continuity} and \ref{fluid_euler} become
+\begin{equation}
+	\begin{split}
+		\partial_t\delta + \nabla_x \cdot v &= 0 \\
+		\dot v + \mathcal{H}v &= -\nabla_x\phi
+	\end{split}
+\end{equation}
+Furthermore, the velocity can be decomposed into a divergence part $\theta = \nabla_x \cdot v $ and a vorticity part $w = \nabla_x \times v$
+\begin{equation}\label{delta_theta}
+	\partial_t\delta + \theta = 0
+\end{equation}
+From the $00$ component Friedman equation,
+\begin{equation}
+	\nabla_x^2\phi = \frac{3}{2}\Omega_m \mathcal{H}^2\delta
+\end{equation}
+This splits equation \ref{fluid_euler} into two parts,
+\begin{equation}
+	\begin{split}\label{fluid_euler_div}
+		\dot \theta + \mathcal{H}\theta + \frac{3}{2}\Omega_m \mathcal{H}^2\delta &= 0 \\
+		\dot w + \mathcal{H}w &= 0
+	\end{split}
+\end{equation}
+One of our assumptions was that vorticity is negligable, and the above equation demonstrates this because $w \propto e^{-a}$ thus at late times $w\rightarrow 0$ due to the expansion of the universe. Lets define the linear growth function $D_1(\tau)$ by $\delta(\tau,x) = D_1(\tau)\delta(0,x)$. The time derivative of divergence equation becomes 
+\begin{equation}
+	\ddot D_1 + \mathcal{H} \dot D_1 + \frac{3}{2}\Omega_m \mathcal{H}^2 D_1 = 0
+\end{equation}
+We have reduced eq \ref{fluid_euler} to a second order ODE in the linear regime, and thus it has two linearly independent solutions. Denote the fast solution as $D_1^+$ and the slow solution as $D_1^-$ so that the general solution is
+\begin{equation}
+	D_1 = D_1^+ A(x) + D_1^- B(x)
+\end{equation}
+Now we can plug this solution into Eq. \ref{delta_theta} we get $a \tau = t \Rightarrow dt = \dot a \tau + a d\tau$
+\begin{equation}
+	\partial_\tau\delta = \dot D_1^+ A + \dot D_1^- B = -\theta(\tau,x)
+\end{equation}
+\subsection{Equation of Motion in Fourier Space}
+
+First lets find the Fourier transform of the continuity equation. The main difficulty here is that, moving the term $\nabla_x\delta\cdot v$ to the right hand side gives us a product of functions. This can be solved using the convolution theorem for the inverse Fourier transform. Furthermore, convoliving any function with the delta function simply replaces the parameter in the integral. This means at the end, we also need to convolve $\tilde\theta(\tau,k_1)$ with the dirac delta to get $\tilde\theta(\tau,k-k_2)$. Working out the algebra
+\begin{equation}
+	\begin{split}
+		\mathcal{F}((\nabla_x\delta)\cdot v ) &= \mathcal{F}(\nabla_x\delta) * \mathcal{F}(v) \\
+		&= ik \tilde{\delta}(\tau,k) * \tilde{v}(\tau,k) \\
+		&= \int ik \tilde{\delta}(\tau,k_2) \tilde{v}(\tau,k-k_2)d^3k_2 \\
+		& k-k_2 = k_1\\
+		&= \int -\frac{ik\cdot k_1 k_1}{k_1^2} \tilde\delta (\tau,k_2) \tilde{v}(\tau,k_1) d^3k_2 \\
+		&= \int \frac{k\cdot k_1}{k_1^2} \tilde\delta (\tau,k_2) \mathcal{F}(\nabla_x\cdot v)(k_1) d^3k_2 \\
+		&= \iint \delta_D(k-k_1-k_2) \frac{k\cdot k_1}{k_1^2} \tilde\delta(\tau,k_2) \tilde\theta(\tau,k_1) d^3k_2 d^3k_1
+	\end{split}
+\end{equation}
+Thus the continuity equation becomes
+\begin{equation}\label{f_continuity}
+	\begin{split}
+		0&=\int \partial_\tau \delta + \nabla_x(1+\delta)\cdot v e^{-ik \cdot x}d^3x \\
+		\partial_\tau \tilde\delta + \tilde\theta &= - \iint \delta_D(k-k_1-k_2)\frac{(k_1+k_2)\cdot k_1}{k_1^2} \tilde\delta(\tau,k_1)\tilde\theta(\tau,k_2)\frac{d^3k_1}{(2\pi)^3}d^3k_2 \\
+	\end{split}
+\end{equation}
+Following the same methods, the Euler equation becomes
+\begin{equation}\label{f_euler}
+	\partial_\tau \tilde\theta + \mathcal{H}\tilde{\theta} + \frac{3}{2}\Omega_m \mathcal{H}^2 \tilde\delta = -\iint \delta_D(k-k_1-k_2) \frac{(k_1+k_2)^2k_1\cdot k_2}{2k_1^2k_2^2} \tilde{\theta}(\tau,k_1)\tilde{\theta}(\tau,k_2)\frac{d^3k_1}{(2\pi)^3}d^3k_2 
+\end{equation}
+In Fourier space, the nonlinearities are represented as integrals over $k$-space while the linear terms remain as derivatives on the left. The non-linearities are now represented by couplings between different Fourier modes which are represented by the functions of $k_1,k_2$ in the integrands. For each fourier mode $k$, there are many combinations for $k_1,k_2$ such that $k=k_1+k_2$. In equation \ref{f_euler} this manifests as a coupling between different divergences of the matter velocity and, as such, is in fact a requirement for translational invariance in the homogenous universe.
+\subsubsection{General Solution for an Einstein-de Sitter Cosmology}
+As a reminder, let me once more write the friedman equations.
+\begin{equation}\label{friedman1}
+	\partial_\tau \mathcal{H} = \mathcal{H}^2 \left( \Omega_\Lambda -\frac{\Omega_m}{2} \right)
+\end{equation}
+\begin{equation}\label{friedman2}
+	(\Omega_\mathrm{tot} - 1) \mathcal{H}^2 = k
+\end{equation}
+The Einstein-de Sitter cosmology has $\Omega_m = 1$ and $\Omega_\Lambda=0$. Equation \ref{friedman1} becomes
+\begin{equation}
+	\partial_\tau \mathcal{H} = -\frac{1}{2}\mathcal{H}^2
+\end{equation}
+Integrating w.r.t $\tau$ gives
+\begin{equation}
+	\mathcal{H} = \frac{2}{\tau}
+\end{equation}
+Now we apply the following perturbative expansion for $\tilde{\delta}$, which also gives the expression for $\tilde{\theta}$ via the linear continuity equation.
+\begin{equation}
+	\begin{split}
+		\tilde \delta &= \sum_n a^n(\tau)\tilde\delta^{(n)}(k) \\
+		\tilde \theta &= \mathcal{H}\sum_n a^{n}(\tau) \tilde{\theta}^{(n)}(k)
+	\end{split}
+\end{equation}
+Now plugging in the expansions to equation \ref{f_continuity} and \ref{f_euler} gives
+\begin{equation}
+	\begin{split}
+		n\tilde{\delta}^{(n)} + \tilde{\theta}^{(n)} &= A_n \\
+		\frac{3}{2}\mathcal{H}^2a^{n}\tilde{\delta}^{(n)} + \mathcal{H}^2a^{n}\tilde{\theta}^{(n)} + n\mathcal{H}^2a^{n}\tilde{\theta}^{(n)}+\dot{\mathcal{H}}a^{n}\tilde{\theta}^{(n)} &= \tilde{B}_n \\
+		\frac{3}{2}\tilde{\delta}^{(n)}+\tilde{\theta}^{(n)}+n\tilde{\theta}^{(n)}-\frac{1}{2}\tilde{\theta}^{(n)} &=\frac{1}{\mathcal{H}^2a^n}\tilde{B}_n \equiv \frac{1}{2}B_n \\
+		\Rightarrow \left(\begin{array}{cc}
+		n & 1\\
+		3 & 1+2n
+		\end{array}\right)
+		\left(\begin{array}{c}
+		\tilde{\delta}^{(n)} \\
+		\tilde{\theta}^{(n)}
+		\end{array}\right)
+		&=
+		\left(\begin{array}{c}
+		A_n \\
+		B_n
+		\end{array}\right) \\
+		\Rightarrow \tilde{\delta}^{(n)} = \frac{(1+2n)A_n - B_n}{(2n+3)(n-1)}, \tilde{\theta}^{(n)}=\frac{-3A_n+nB_n}{(2n+3)(n-1)}
+	\end{split}
+\end{equation}
+
+And expand the $k$ dependent functions in terms of the linear order density contrast field
+\begin{equation}
+	\begin{split}
+		\tilde\delta^{(n)} &= \int \cdots \int \delta_D(k-q_1- \dots -q_n)F_n(q_1,\dots,q_n)\tilde{\delta}^{(1)}(q_1)\cdots\tilde{\delta}^{(1)}(q_n) d^3q \cdots d^3q_n \\
+		\tilde\theta^{(n)} &= \int \cdots \int \delta_D(k-q_1- \dots -q_n) G_n(q_1,\dots,q_n)\tilde{\delta}^{(1)}(q_1)\cdots\tilde{\delta}^{(1)}(q_n) d^3q \cdots d^3q_n \\
+	\end{split}
+\end{equation}
+Writing $A_n$ and $B_n$ explicitely comes from the right hand side of the EOM. Keeping in mind the mode coupling, one must sum over each choice of modes for $\tilde{\theta}$ and $\tilde{\delta}$ such that the sum is $n$. Thus we have
+\begin{equation}
+ 	\begin{split}
+ 		A_n =& -\iint \delta_D(k-k_1-k_2)\frac{(k_1+k_2)\cdot k_1}{k_1^2}\sum\limits_{m=1}^{n-1}\tilde{\delta}^{(n-m)}\tilde{\theta}^{(m)}\frac{d^3k_1}{(2\pi)^3}d^3k_2  \\
+ 		    %=& -\iint\delta_D(k-k_1-k_2)\frac{(k_1+k_2)\cdot k_1}{k_1^2}\\
+ 		    % & \sum\limits_{m=1}^{n-1}\left[
+ 		    % \int \cdots \int \delta_D(k-q_1- \dots -q_m)F^{(n-m)}(q_1,\dots,q_{n-m})\tilde{\delta}^{(1)}(q_1)\cdots\tilde{\delta}^{(1)}(q_{n-m}) d^3q %\cdots d^3q_m\right.\\
+ 		    % & \left.\int \cdots \int \delta_D(k-q_{n-m}- \dots - q_n) G^{(n-m)}(q_{n-m},\dots,q_n)\tilde{\delta}^{(1)}(q_{n-m})\cdots\tilde{\delta}^{(1)}(q_n) d^3q_{n-m} \cdots d^3q_n \right]\\
+ 		B_n =& \iint \delta_D(k-k_1-k_2)\frac{(k_1+k_2)\cdot k_1}{k_1^2}\sum\limits_{m=1}^{n-1}\tilde{\theta}^{(n-m)}\tilde{\theta}^{(m)}\frac{d^3k_1}{(2\pi)^3}d^3k_2  \\
+ 		    %=& \iint\delta_D(k-k_1-k_2)\frac{(k_1+k_2)\cdot k_1}{k_1^2}\\
+ 		    % & \sum\limits_{m=1}^{n-1}\left[
+ 		    % \int \cdots \int \delta_D(k-q_1- \dots -q_m)G^{(m)}(q_1,\dots,q_m)\tilde{\delta}^{(1)}(q_1)\cdots\tilde{\delta}^{(1)}(q_m) d^3q \cdots d^3q_m\right.\\
+ 		    % & \left.\int \cdots \int \delta_D(k-q_{n-m}- \dots - q_n) G^{(n-m)}(q_{n-m},\dots,q_n)\tilde{\delta}^{(1)}(q_{n-m})\cdots\tilde{\delta}^{(1)}(q_n) d^3q_{n-m} \cdots d^3q_n \right]\\
+ 	\end{split}
+\end{equation} 
+By simply plugging in the equations for $A_n$, $B_n$, $\tilde{\delta}$, and $\tilde{\theta}$ one finds the recursion relations for $F_n$ and $G_n$
+\begin{equation}
+	\begin{split}
+		F_n =& \\
+		G_n =&
+	\end{split}
+\end{equation}
+By summing over all permutations of the $q_i$'s we obtain the symmetrized version of the functions $F_n$ and $G_n$ 
+\begin{equation}
+	\begin{split}
+		F^{(s)}_n =& \\
+		G_n^{(s)} =&
+	\end{split}
+\end{equation}
+
+% \subsection{The Boltzmann Equation From Symplectic Geometry}
+% Note that the Boltzmann relates the particle flux to phase space volume. Thus we will begin as before, our 6 (8?) dimensional phase space is defined with coordinates $(x,p)$. A symplectic form can be constructed according to Hamilton's equations of motion
+% \begin{equation}
+% 	\omega = g_{ij}dx^i \wedge dp^j
+% \end{equation}
+% So we in fact have a symplectic manifold $(M,\omega)$. Given a smooth funcion $f$ on $M$ there is an associated vector field generated by the Poisson bracket $\{f,\cdot\} = \partial_{x}^\mu f \partial_{p,\mu} - \partial_{p}^\mu f \partial_{x,\mu} = X_f$. Taking the Lie derivative of $\omega$ along $X_f$ gives
+% \begin{equation}
+% 	\begin{split}
+% 		\mathcal{L}_{X_f}(\omega) &= \mathcal{L}_{X_f}(\omega_{ij}dx^i\wedge dp^j) \\
+% 								  &= \mathcal{L}_{X_f}(\omega_{ij})dx^i\wedge dp^j + \omega_{ij} \mathcal{L}_{X_f}(dx^i)\wedge dp^j + \omega_{ij}dx^{i}\wedge\mathcal{L}_{X_f}(dp^j) \\
+% 								  &= X_f\omega_{ij} dx^i \wedge dp^j + \omega_{ij} d_xX_f^i \wedge dp^j + \omega_{ij} dx^i \wedge d_pX_{f}^j \\
+% 								  &=( X_f \omega_{ij} + \omega_{kj}\partial_{x_i}X_f^k + \omega_{ik}\partial_{p_j}X_f^k ) dx^i \wedge dp^j
+% 	\end{split}
+% \end{equation}
+% Our distinction here is that:
+% \begin{enumerate}
+% 	\item We are considering a distribution, so we only have 3 (4?) canonical coordinates and the associated conjugate momenta.
+% 	\item $X_f$ is not necessarily a symplectic vector field, and thus the Lie derivative need not vanish. We instead set it equal to a collision term $C(f)$
+% \end{enumerate}
+% Now we can plug in $X_f$
+% \begin{equation}
+% 	\begin{split}
+% 		\mathcal{L}_{X_f}(\omega) =& ( X_f \omega_{ij} + \omega_{kj}\partial_{x_i}X_f^k + \omega_{ik}\partial_{p_j}X_f^k ) dx^i \wedge dp^j \\
+% 								  =& [X_f^k\partial_kg_{ij} + g_{kj}\partial_{x_i}X_f^k + g_{ik}\partial_{p_j}X_f^k] dx^i \wedge dp^j \\
+% 								  =& [ (\partial_t f) \partial_{,0} \dot a a g_{ij} dx^i \wedge dp^i  ]
+% 	\end{split}
+% \end{equation}
+
+% \chapter{Multifield Dark Energy}
+
+% So I don't keep having to look at this
+% \begin{defn}
+% Given a semi-riemannian manifold $M$ with metric $g$, the christoffel symbols are given by
+% $$ \nabla_a\partial_b = \Gamma^c_{ab}\partial_c $$
+% $$ \partial_ag_{bc} + \partial_bg_{ca} - \partial_cg_{ab} = 2g_{dc}\Gamma^d_{ab} $$
+% \end{defn}
+% Consider a metric of the form diag$(-1,a^2(t))$, so its determinant is $-a^6$.
+% The action is
+% $$ S=\int d^4x \sqrt{-g} \left[ \frac{1}{2}M_{p}^2 R -\frac{1}{2}\gamma_{ab}\partial_\mu\phi^a\partial^\mu\phi^b - V(\phi)+\mathcal{L}_m \right] $$
+% I only want to describe a homogeneous background, so the field is only a function of time. The action becomes
+% $$ S=\int d^4x \sqrt{-g} \left[ \frac{1}{2}M_{p}^2 R -\frac{1}{2}\gamma_{ab}\dot\phi^a\dot\phi^b - V(\phi)+\mathcal{L}_m \right] $$
+% Varying the field gives
+% $$ \delta S = \int d^4x \sqrt{-g}\left[ - \frac{1}{2}\partial_a(\gamma_{bc})\dot\phi^b\dot\phi^c - \frac{1}{2}\gamma_{ab}\frac{d}{dt}(\delta\phi^a)\dot\phi^b - \partial_aV\delta\phi^a \right] $$
+% $$ \delta S = -\frac{1}{2}(\delta\phi^a)(\sqrt{-g}\gamma_{ab}\dot\phi^b + \int d^4x \sqrt{-g}\left[ -\frac{1}{2}\gamma(\nabla_a\partial_b,\partial_c)\dot\phi^b,\dot\phi^c -\frac{1}{2}\gamma(\partial_b,\nabla_a\partial_c)\dot\phi^b\dot\phi^c + 3\frac{\dot a}{a}\gamma_{ab}\delta\phi^a\dot\phi^b + \gamma_{ab}\delta\phi^a\ddot\phi^b -V_a\delta\phi^a \right] $$
+% $$ \delta S = -\int d^4x \sqrt{-g}\left[ \frac{1}{2}\Gamma_{ab}^d\gamma_{dc}\dot\phi^b\dot\phi^c + \frac{1}{2}\Gamma_{ac}^d\gamma_{bd}\dot\phi^b\dot\phi^c + 3H\gamma_{ab}\dot\phi^b + \gamma_{ab}\ddot\phi^b + V_a  \right] $$
+% Multiply everything by $\gamma^{aa}$. Now lets do some reshuffling of the indices.
+% $$ \gamma^{aa}\Gamma^d_{ab}\gamma_{dc}\dot\phi^b\dot\phi^c $$
+% $$ a\leftrightarrow d$$
+% $$ \gamma^{ad}\Gamma^a_{db}\gamma_{ac}\dot\phi^b\dot\phi^c $$
+% $$ b\leftrightarrow d$$
+% $$ \gamma^{ad}\Gamma^a_{bd}\gamma_{ac}\dot\phi^b\dot\phi^c $$
+% $$ \gamma^{ab}\Gamma^a_{bd}\gamma_{ac}\dot\phi^d\dot\phi^c $$
+% $$ c\leftrightarrow d$$
+% $$ \gamma^{ab}\Gamma^a_{bc}\gamma_{ad}\dot\phi^d\dot\phi^c = \Gamma_{bc}^a \dot\phi^b\dot\phi^c $$
+% and
+% $$ \gamma^{aa} \Gamma^d_{ac}\gamma_{bd}\dot\phi^b\dot\phi^c $$
+% $$ a\leftrightarrow d$$
+% $$ \gamma^{ad} \Gamma^a_{dc}\gamma_{ba}\dot\phi^b\dot\phi^c $$
+% $$ b\leftrightarrow d$$
+% $$ \gamma^{ab} \Gamma^a_{bc}\gamma_{da}\dot\phi^d\dot\phi^c = \Gamma_{bc}^a\dot\phi^b\dot\phi^c $$
+% Thus the equation of motion is found,
+% $$ \ddot\phi^a + \Gamma_{bc}^a\dot\phi^b\dot\phi^c +3H\dot\phi^a + V^a = 0 $$
+% $$ D_t\dot\phi^a+3H\dot\phi^a + V^a = 0 $$
+
+% The riemann curvature is
+% $$ R^\alpha_{\beta\gamma\delta} = \partial_\beta\Gamma^\alpha_{\gamma\delta} - \partial_\gamma\Gamma^\alpha_{\beta\delta}+\Gamma^\sigma_{\gamma\delta}\Gamma^\alpha_{\beta\sigma} - \Gamma^\sigma_{\beta\delta}\Gamma^\alpha_{\gamma\sigma} $$
+% So the Ricci curvature tensor is
+% $$ R_{\beta\delta} = R^\alpha_{\beta\alpha\delta} = \partial_\beta\Gamma^\alpha_{\alpha\delta} - \partial_\alpha\Gamma^\alpha_{\beta\delta}+\Gamma^\sigma_{\alpha\delta}\Gamma^\alpha_{\beta\sigma} - \Gamma^\sigma_{\beta\delta}\Gamma^\alpha_{\alpha\sigma} $$
+% And the Ricci scalar curvature is
+% $$ R = R_{\beta}^{\beta} = g^{\beta\delta}R_{\beta\delta} =
+% g^{\beta\delta}\partial_\beta\Gamma^\alpha_{\alpha\delta} -
+% g^{\beta\delta}\partial_\alpha\Gamma^\alpha_{\beta\delta}
+% +g^{\beta\delta}\Gamma^\sigma_{\alpha\delta}\Gamma^\alpha_{\beta\sigma} -
+% g^{\beta\delta}\Gamma^\sigma_{\beta\delta}\Gamma^\alpha_{\alpha\sigma} $$
+% Since the fields only depend on time, we only need to consider the temporal component of the Ricci curvature tensor, so
+% $$ R_{tt} = \partial_t \Gamma^{\alpha}_{\alpha t} - \partial_\alpha\Gamma^{\alpha}_{tt}
+% + \Gamma^{\sigma}_{\alpha t}\Gamma^{\alpha}_{t \sigma} - \Gamma^{\sigma}_{tt}\Gamma^{\alpha}_{\alpha\sigma} $$
+% From the definition of the christoffel symbols, and noting $ g = g(t)$ and $g$ is diagonal, we have $\partial_t g_{aa} = 2g_{ba}\Gamma^b_{ta}$, thus
+% the second term is necessarily 0 since $\partial_t g_{tt} = 0$. The first term is non-zero for $\alpha = 1,2,3$, in which it equals 
+% $$ \frac{1}{2}\partial_t (1/a^2 \partial_t a^2) = \partial_t(\dot a / a) = -3\ddot a /a + 3\dot a^2 /a^2 $$
+% The third term is non-zero for $\alpha = \sigma$, In which case we get 
+% $$ \frac{3}{4a^4}(\partial_t (a^2))^2 =  -3\dot a^2/a^2  $$
+% The last term is vanishes since the temporal component of the metric is constant. Thus we find
+% $$ R_{tt} = 3\frac{\ddot a}{a}$$
+% Now, if we consider spatial components of the Ricci curvature, we find that the first term now vanishes, the second term is equal to $ -\ddot a/a - \dot a^2/a^2$, the thrid term is 0, and the last term is $-\dot a^2/a^2$, so the spacial components are
+% $$ R_{xx} = -\ddot a  a - 2\dot a^2$$
+% Thus the Ricci curvature scalar is
+% $$ 6\ddot a/a + 6\dot a^2/a^2 $$
+% Hence the einstein equation gives
+% $$ -3H^2 =  $$
+% I need to write out the indices better if I want to get the signs correct.
+
+% \hrule
+% $$ \partial_ag_{bc} + \partial_bg_{ca} - \partial_cg_{ab} = 2g_{dc}\Gamma^d_{ab} $$
+
+% \hrule
+% Considering the way this acts on the coordinate vector field $\partial_\alpha$, 
+% $$ R\partial_\alpha =
+% g^{\beta\delta}\partial_\beta\Gamma^\alpha_{\alpha\delta}\partial_\alpha -
+% g^{\beta\delta}\partial_\alpha\Gamma^\alpha_{\beta\delta}\partial_\alpha
+% +g^{\beta\delta}\Gamma^\sigma_{\alpha\delta}\Gamma^\alpha_{\beta\sigma}\partial_\alpha -
+% g^{\beta\delta}\Gamma^\sigma_{\beta\delta}\Gamma^\alpha_{\alpha\sigma} \partial_\alpha $$
+% $$ R\partial_\alpha =
+% g^{\beta\delta}\partial_\beta \nabla_\alpha\partial_\delta -
+% g^{\beta\delta}\partial_\alpha \nabla_\beta\partial_\delta
+% +g^{\beta\delta}\Gamma^\sigma_{\alpha\delta} \nabla_\beta\partial_\sigma -
+% g^{\beta\delta}\Gamma^\sigma_{\beta\delta} \nabla_\alpha \partial_\sigma $$
