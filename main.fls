@@ -1,4 +1,4 @@
-PWD /Users/evan/Documents/pt-notes
+PWD /Users/evan/pt-notes
 INPUT /usr/local/texlive/2022/texmf.cnf
 INPUT /usr/local/texlive/2022/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt
@@ -1182,6 +1182,10 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm
+INPUT ./sections/lpt.tex
+INPUT sections/lpt.tex
+INPUT ./sections/lpt.tex
+INPUT sections/lpt.tex
 INPUT ./sections/statistics.tex
 INPUT sections/statistics.tex
 INPUT ./sections/statistics.tex

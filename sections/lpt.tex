@@ -1,0 +1,261 @@
+\chapter{Lagrangian Perturbation Theory}
+Lagrangian perturbation theory (LPT) is based off Lagrangian coordinates. Suppose a coordinate in Eulerian space is given by $x(t)$. The corresponding Lagrangian coordinate is given by the initial position $q=x(0)$ and the \emph{displacement field} $\psi(q,t)$,
+\begin{equation}
+	x = q+\psi(q,t)
+	\label{eq:displacement}
+\end{equation}
+LPT has many benefits over the eulerian space. Firstly, we have only one field, the dispacement field, rather than two in EPT. Second, conservation of mass is automatically implied (this will be seen rigorously later in the chapter). The main concept to grasp is that Lagrangian coordinates are related to \emph{flows}. Here, we attempt to match the two perturbation theories and emphasize the benefits of LPT.
+
+\section{Connecting Eulerian and Lagrangian Theories}
+Since the LPT picture and EPT picture are related by the displacement field, we can attempt to write the EPT equations in Lagrangian coordiantes. 
+
+First, lets examine the density, $\rho$. We are fortunate enough to be working with flows, thus the density in Lagrangian coordinates is constant! Lets denote the Jacobian from Eulerian coordinates to Lagrangian coordinates as $J$, so that the density is given by
+\begin{equation}
+	\rho(x,t) = J^{-1}\rho_0
+\end{equation}
+and as such,
+\begin{equation}
+	\delta(x,t) = J^{-1}-1
+\end{equation}
+
+Second, lets examine the time derivatives. Rewrite equation~\ref{eq:displacement} as
+\begin{equation}
+	x = q+\psi(q,t) = f(q,t)
+\end{equation}
+The time derivative of $f$ is then
+\begin{equation}
+	\frac{d}{dt}f(q,t) = \partial_t f(q,t) + v \cdot \nabla f(q,t)
+	\label{eq:lagrange_euler}
+\end{equation}
+where $v = \frac{dx}{dt}|_{t=0}$. I stress that, since the lagrangian coordinate $q$ is given by $x(0)$, the derivatives do not necessarily vanish! This time derivative is called the \emph{convective derivative along $v$}.
+
+With these in hand, we can now write the Euler and Continuity equations to the Lagrangian coordinates. The continuity equation becomes
+\begin{equation}
+	\partial_t J^{-1} + \nabla\cdot (J^{-1}v) = 0
+\end{equation}
+% Using the identity
+% \begin{equation}
+% 	\dot{(J_{ij})} = \partial_t\frac{\partial f^i}{\partial q^j} = \frac{\partial}{\partial q^j} \frac{\partial f^i}{\partial t} = \nabla_q \cdot v = J \nabla \cdot v
+% \end{equation}
+
+The Euler equation, on the other hand, can be solved by realizing that in lagrangian space, 
+\begin{equation}
+	\dot f(q,t) = v\,, \quad \ddot f(q,t) = -\nabla \phi
+\end{equation}
+so that the Euler equation becomes
+\begin{equation}
+	\partial_t v + (v\cdot\nabla)v = -\nabla\phi \Rightarrow \ddot f = \ddot f
+\end{equation}
+The Euler equation is completely tautological! 
+
+Next, we have the poisson equation and the identity
+\begin{equation}
+	\nabla \times (-\nabla \phi) = 0\,.
+\end{equation}
+To convert these to the Lagrangian scheme, we need to define the \emph{functional Jacobian} by
+\begin{equation}
+	\mathcal{J}(A,B,C) = \frac{\partial(A,B,C)}{\partial(q_1,q_2,q_3)} = \epsilon_{ijk}A_{|i}B_{|j}C_{|k}
+\end{equation}
+and the inverse transformation as $h=f^{-1}$. From the cofactor expansion, we can write
+\begin{equation}
+	h_{k,j} = \frac{1}{2}J^{-1}\epsilon_{kab}\epsilon_{jcd}f_{a|c} f_{b|d}
+\end{equation}
+Then derivatives of the gravitational field $g=-\nabla\phi$ can be represented by
+\begin{equation}
+	g_{i,j} = g_{i|k}h_{k,j} = \frac{1}{2}J^{-1}\epsilon_{kab}\epsilon_{jcd}g_{i|k}f_{a|c} f_{b|d} = \frac{\epsilon_{jcd}}{2}J^{-1}\mathcal{J}(g_i,f_c,f_d)
+\end{equation}
+So, the divergence is given by
+\begin{equation}
+	g_{i,i} = \nabla\cdot g = \frac{1}{2}\epsilon_{abc}\mathcal{J}(\ddot f_a,f_b,f_c)J^{-1}
+\end{equation}
+To compute the curl, on the other hand, we can use
+\begin{equation}
+	g_{[i,j]} = g_{i,j} - g_{j,i} = -\frac{1}{2}(\nabla\times g)_k = \frac{1}{2}\epsilon_{pq[j}\mathcal{J}(\ddot f_{i]},f_p,f_q)J^{-1}
+\end{equation}
+Thus, the original constraint equations become
+\begin{equation}
+	\begin{split}
+		(\nabla\times g)_i =& \mathcal{J}(\ddot{f}_j,f_i,f_j)J^{-1} = 0 \\
+		\mathcal{J}(\ddot{f}_1,f_2,f_3) + \mathcal{J}(\ddot{f}_2,f_3,f_1) + \mathcal{J}(\ddot{f}_3,f_1,f_2) = \Lambda\mathcal{J}(f_1,f_2,f_3) - 4\pi G \rho J
+	\end{split}
+\end{equation}
+Not that illuminating? Thats fine! The important thing here is to emphasize the ways LPT can simplify the system. We no longer have two fields, we have just one, the displacement field. The continuity equation becomes exactly solvable and the Euler equation becomes tautological. The Poisson equation and the curl-free condition restrains the jacobian that connects the Lagrangian and Eulerian coordinates.
+
+Moving forward, one could directly attempt to perturb the Jacobian around a homogoneous background:
+\begin{equation}
+	J = I+\epsilon J^{(1)}+ \epsilon^2J^{(2)} + \dots
+\end{equation}
+
+However, at the one-loop level, there are IR divergences for $n\leq -1$ and UV divergences for $n\geq -1$. These will be addressed in the next section.
+
+% In fact, taking the second derivative gives the acceleration.
+% \begin{equation}
+% 	\frac{d^2f}{dt^2} = g
+% \end{equation}
+% Also, define the functional Jacobian as
+% \begin{equation}
+% 	\mathcal{J}(A,B,C) = \frac{\partial(A,B,C)}{\partial(q_1,q_2,q_3)} = \epsilon_{ijk}A_{|i}B_{|j}C_{|k}
+% \end{equation}
+% where the $\cdot_{|}$ indicates derivatives with respect to the Lagrangian coordinates.
+
+
+% First, we can examine the derivatives. Rewrite equation~\ref{eq:displacement} as
+% \begin{equation}
+% 	x = q+\psi(q,t) = f(q,t)
+% \end{equation}
+% The time derivative of $f$ is then
+% \begin{equation}
+% 	\frac{d}{dt}f(q,t) = \partial_t f(q,t) + v \cdot \nabla f(q,t)
+% 	\label{eq:lagrange_euler}
+% \end{equation}
+% where $v = \frac{dx}{dt}|_{t=0}$. I stress that, since the lagrangian coordinate $q$ is given by $x(0)$, the derivatives do not necessarily vanish! Equation~\ref{eq:lagrange_euler} looks like the Euler equation from the previous chapter. 
+
+% In fact, taking the second derivative gives the acceleration.
+% \begin{equation}
+% 	\frac{d^2f}{dt^2} = g
+% \end{equation}
+
+
+\hrule
+\hrule
+
+To make the switch to lagrangian perturbation theory, one must do a change of variables. Go from spatial/Eulerian coordinates to the \textit{trajectory field} or \emph{deformation field}.
+\begin{equation}
+	x = f(X,t)\,;\quad X\equiv f(X,t_0).
+\end{equation}
+the trajectories are thus entirely parameterized by time and their initial position $x_0=X$. Also define the Lagrangian time derivative along the velocity as
+\begin{equation}
+	\frac{d}{dt}f(X,t) \equiv \dot{f}(X,t) \equiv \partial_tf(X,t) + v \cdot \nabla f(X,t)
+\end{equation}
+where $v=\dot f (X,y)$. The acceleration of this field is given as the double time derivative, $\ddot{f}(X,y) = g$. With these definitions, the Euler equation is automatically solved. 
+
+Now move to the continuity equation. the deformation tensor is the tensor of first derivatives of $f$
+\begin{equation}
+	f^i_k = \partial_kf^i = \frac{\partial}{\partial X^k} f^i(X,t)
+\end{equation}
+The volume of a deformed fluid element is given by the jacobian, the determinant of the deformation tensor,
+\begin{equation}
+	\rho(X,t) = J^{-1} \rho_0 = J^{-1} \rho(X,t_0)
+\end{equation}
+defining the inverse tranform (from lagrangian to eulerian coords),
+\begin{equation}
+	X = h(x,t)\,,\quad h\equiv f^{-1}
+\end{equation}
+\begin{equation}
+	h_{a,b} = \partial_b h^a = (J^{-1})^a_b
+\end{equation}
+Define the functinal jacobian as
+\begin{equation}
+	\mathcal{J}(A,B,C) = \frac{\partial(A,B,C)}{\partial(X_1,X_2,X_3)} = \epsilon_{ijk}A_{|i}B_{|j}C_{|k}
+\end{equation}
+$\mathcal{J}$ is clearly antisymmetric under permutations $i,j,k$. Thus $\mathcal{J}$ is a differential 3 form. Nevertheless, this allows one to write $\nabla\cdot g$ as
+\begin{equation}
+	g_{i,j} = g_{i|k}h_{k,j} = \frac{1}{2J}\epsilon_{k\ell m}\epsilon_{jpq} g_{j|k}f_{p|\ell}f_{q|m} = \frac{1}{2J}\mathcal{J}(g_i,f_p,f_q)
+\end{equation}
+Hence
+\begin{equation}
+	g_{[i,j]} = g_{i,j} - g_{j,i} = -\frac{1}{2}(\nabla\times g)_k = \frac{1}{2}\epsilon_{pq[j}\mathcal{J}(\ddot f_{i]},f_p,f_q)J^{-1}
+\end{equation}
+\begin{equation}
+	g_{i,i} = \nabla\cdot g = \frac{1}{2}\epsilon_{abc}\mathcal{J}(\ddot f_a,f_b,f_c)J^{-1}
+\end{equation}
+Hence, from the original Eulerian equations, we have
+\begin{equation}
+	\begin{split}
+		(\nabla\times g)_i =& \mathcal{J}(\ddot{f}_j,f_i,f_j)J^{-1} = 0 \\
+		\mathcal{J}(\ddot{f}_1,f_2,f_3) + \mathcal{J}(\ddot{f}_2,f_3,f_1) + \mathcal{J}(\ddot{f}_3,f_1,f_2) = \Lambda\mathcal{J}(f_1,f_2,f_3) - 4\pi G \rho J
+	\end{split}
+\end{equation}
+\subsection{Lagrangian Dynamics}
+The continuity equation in index form is simply
+\begin{equation}
+	\partial_t v_i + v_k v_{i,k} = g_i
+\end{equation}
+Taking another spatial derivative
+\begin{equation}
+	\begin{split}
+		\partial_t v_{i,j} = v_{k,j}v_{i,k} + v_k v_{i,kj} \\
+		\Rightarrow (v_{i,j})^{\bullet} = g_{i,j} - v_{i,k}v_{k,j}
+	\end{split}
+\end{equation}
+decompose $v_{i,j}$ into a trace, symmetric traceless, and anti-symmetric tensors $\theta$,$\sigma_{ij}$, and $\omega_{ij}$, respectively.
+\begin{equation}
+	v_{i,j} = \frac{1}{3}\theta\delta_{ij} + \sigma_{ij} + \omega_{ij}
+\end{equation}
+This nicely simplifies the continuity equation. Plugging in each part separately ($\theta = v_{i,i}$, $\sigma_{ij} = \frac{1}{2}(v_{i,j}+v_{j,i}) - \frac{1}{3}\theta\delta_{ij}$, and $\omega_{ij}=\frac{1}{2}(v_{i,j}-v_{j,i})$).
+\begin{equation}
+	\dot\theta = -\frac{1}{3}\theta^2 + 2(\omega^2 - \sigma^2) + g_{i,i}
+\end{equation}
+\begin{equation}
+	(\omega_{ij})^{\bullet} = -\frac{2}{3}\theta\omega_{ij} - \sigma_{ik}\omega_{kj} - \omega_{ik}\sigma_{kj} + g_{[i,j]}
+\end{equation}
+\begin{equation}
+	(\sigma_{ij})^{\bullet} = -\frac{2}{3}\theta\sigma_{ij} - \sigma_{ik}\sigma_{kj} - \omega_{ik}\omega_{kj} + \frac{2}{3}(\sigma^2-\omega^2)\delta_{ij} + g_{(i,j)} - \frac{1}{3}g_{k,k}\delta_{ij}
+\end{equation}
+Now return to the Eulerian fields. The equations are
+\begin{equation}
+	\dot\rho = -\rho\theta
+\end{equation}
+\begin{equation}
+	\dot\theta = -\frac{1}{3}\theta^2 + 2(\omega^2 - \sigma^2) + \Lambda - 4\pi G\rho
+\end{equation}
+\begin{equation}
+	(\omega_{i})^{\bullet} = -\frac{2}{3}\theta\omega_{i} + \sigma_{ij}\omega_j
+\end{equation}
+\begin{equation}
+	(\sigma_{ij})^{\bullet} = -\frac{2}{3}\theta\sigma_{ij} - \sigma_{ik}\sigma_{kj} - \omega_{ik}\omega_{kj} + \frac{2}{3}(\sigma^2-\omega^2)\delta_{ij} + E_{ij}
+\end{equation}
+where $E_{ij} = g_{i,j} - g_{k,k}\delta_{ij}/3$
+The first equation is the continuity equation. The second is the Raychaudhuri's equation, equivalent to the Poisson equation. The third is the Kelvin-Helmholtz vorticity transport equation. Equivalent to $\nabla\times g = 0$ given the Euler equation is true
+\subsection{Perturbations Around a Homogeneous Background}
+A perfectly homogenous space would mean the integral curves are trivial; there is no flow. Thus the Eulerian and Lagrangian coordinates are simply related by
+\begin{equation}
+	x = X
+\end{equation}
+Then, perturb the Lagrangian coordinates around this homogeneous background by the displacement field $\psi(X,t)$.
+\begin{equation}
+	x = f(X,\tau) = X + \psi(X,\tau)
+\end{equation}
+We then expand $\psi$ perturbatively
+\begin{equation}
+	\psi(X,t) = \sum_{{i=0}}^\infty \epsilon^i \psi^{(i)}(X,t)
+\end{equation}
+The (linear) Euler equation says
+\begin{equation}
+	\frac{d^2}{d\tau^2}x + \mathcal{H}\frac{d}{d\tau}x = -\nabla\phi
+\end{equation}
+Pluging in $f(X,\tau)$ gives
+\begin{equation} %%% FIX %%%
+	\begin{split}
+		\frac{d^2}{d\tau^2}(X+\psi(X,\tau)) + \mathcal{H}\frac{d}{d\tau}(X+\psi(X,\tau)) = -\nabla\phi \\
+		\frac{d^2}{d\tau^2}\psi + \mathcal{H}\frac{d}{d\tau}\psi = -\nabla\phi \\
+		\frac{d^2}{d\tau^2}\psi_{i,i} + \mathcal{H}\frac{d}{d\tau}\psi_{i,i} = -\nabla^2\phi \\
+		\left[\frac{d^2}{d\tau^2}\psi_{i|j} + \mathcal{H}\frac{d}{d\tau}\psi_{i|j}\right] = -\frac{3}{2}\Omega_m\mathcal{H}^2 \delta J \\
+		\left[\frac{d^2}{d\tau^2}\psi_{i|j} + \mathcal{H}\frac{d}{d\tau}\psi_{i|j}\right] = -\frac{3}{2}\Omega_m\mathcal{H}^2 (J-1)\\
+	\end{split}
+\end{equation}
+Since in LPT, the density is fixed and the volume element evolves with the flow, where as in EPT the volume element is fixed and the density evolves. it holds that
+\begin{equation}
+	\overline{\rho}(1+\delta)d^3x = \overline{\rho}d^3X \Rightarrow J\delta = 1-J \Rightarrow 1+\delta = \frac{1}{J}
+\end{equation}
+Where $J$ takes Eulerian coordinates to Lagrangian coordinates.
+\section{LPT Solutions}
+\subsection{ZA Approximation}
+If we have a growth factor so that $\psi(X,\tau)= D_1(\tau)\psi(X)$, and vorticity vanishes, then 
+\begin{equation}
+	\partial_{q^i} \psi^i = -D(\tau) \delta(q)
+\end{equation}
+The jacobian is diagonal, so
+$1+\delta = \frac{1}{[1-\lambda_1D_1][1-\lambda_2D_1][1-\lambda_3D_1]}$
+
+
+
+
+
+
+
+
+
+
+
+

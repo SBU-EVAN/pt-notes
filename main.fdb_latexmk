@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1671573515 "main.tex" "main.pdf" "main" 1671573515
+["pdflatex"] 1689130421 "main.tex" "main.pdf" "main" 1689130421
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -243,12 +243,13 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1658861087 2826443 1475558b74dac1fde51aad1dc5315843 ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "main.aux" 1671573515 3307 c89ea9d0a123593c1ea78f8ef5441767 "pdflatex"
-  "main.out" 1671573515 1732 38d2c13cdc59e8ab57ecfff0f19d0c50 "pdflatex"
-  "main.tex" 1670610790 2223 76dca09c29a30a4df8eda199b0c13840 ""
-  "main.toc" 1671573515 1187 e928d700bfd377c2410c43db49c85bb5 "pdflatex"
-  "sections/eulerian.tex" 1671573512 21637 9368274f7255e81ea51e54fe1e1ec0fa ""
-  "sections/statistics.tex" 1671557810 48 c6dee19a118705bcaa58c7a06e4ed2f3 ""
+  "main.aux" 1689130421 4351 7c7c42e1ebfa72eae1d47d9d60529585 "pdflatex"
+  "main.out" 1689130421 2808 e07600938a934b5fecf24e943c414b8f "pdflatex"
+  "main.tex" 1681404737 2248 965b3fe4e3a59aca842054cc51fbb95b ""
+  "main.toc" 1689130421 1720 907ee44af361610b4046bf973298c64f "pdflatex"
+  "sections/eulerian.tex" 1672770377 21637 9368274f7255e81ea51e54fe1e1ec0fa ""
+  "sections/lpt.tex" 1689130417 12692 d33f269cee5d9b5cb8b779a1cae6c946 ""
+  "sections/statistics.tex" 1688748801 620 c7f48e2e4523567235e7883d5602b8b1 ""
   (generated)
   "main.aux"
   "main.log"
